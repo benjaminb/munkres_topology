@@ -80,6 +80,81 @@ $$\mathscr{T}_{\text{trivial}} \subset \mathscr{T}_{\text{separated}} \subset \m
 
   \end{tikzpicture}
 \end{center}
+
+\begin{problem}
+Show that the colleciton $\mathscr{T}_c$ given in Example 4 of \S 12 is a topology on the set $X$. Is the collection
+$$\mathscr{T}_\infty = \{U \mid X - U \text{ is infinite or empty or all of } X\}$$
+
+a topology on $X$?
+\end{problem}
+
+Example 4 states: Let $X$ be a set; let $\mathscr{T}_c$ be the collection of all subsets $U$ of $X$ such that $X - U$ is either countable or all of $X$. Check that $\mathscr{T}_c$ satisfies the topology requirements:
+\begin{enumerate}
+  \item $X - X$ is empty hence countable, so $X \in \mathscr{T}_c$, and $X - \varnothing$ is all of $X$, so $\varnothing \in \mathscr{T}_c$. So $\mathscr{T}_c$ contains $X$ and $\varnothing$.
+  \item Suppose you have an arbitrary family of open sets $\{U\}_\alpha$. For each $U_\alpha$ we know $X - U_\alpha$ is countable or all of $X$. If $X - U_\alpha$ is all of $X$ for every $\alpha$, that means each $U_\alpha $ is empty and $\bigcup U_\alpha$ is empty. That makes $X - \bigcup U_\alpha$ all of $X$. Otherwise, there is some $U_\alpha$ where $X - U_\alpha$ is countable. Taking more sets away from $X$ (by unioning them with $U_\alpha$) can only make the result smaller. Also by De Morgan's laws:
+        $$ X - \bigcup U_\alpha = \bigcap (X - U_\alpha)$$
+        which is an intersection of countable sets and must be countable. Hence the arbitrary union of open sets is open.
+  \item Suppose you have a finite family of open sets $\{U\}_n$. By De Morgan's laws:
+        $$X - \bigcap_{i=1}^n U_i = \bigcup_{i=1}^n (X - U_i)$$
+        Since each $X - U_i$ is countable or all of $X$, the union $\bigcup_{i=1}^n (X - U_i)$ is countable or all of $X$. Hence the finite intersection of open sets is open.
+\end{enumerate}
+
+Next we investigate if $\mathscr{T}_\infty$ is a valid topology. $X - X$ is empty and $X - \varnothing$ is $X$ so both $X, \varnothing \in \mathscr{T}_\infty$. However it is possible that the complement of arbitrary unions is not infinite, empty, or $X$. Take $\R$ with the standard topology. Let $U = (-\infty, 0)$ and $V = (0, \infty)$. Then $U, V$ are both open since their complements are infinite, but $\R - (U \cup V) = \{0\}$ which is not infinite, empty, or all of $\R$. Hence $\mathscr{T}_\infty$ is not a topology.
+
+\begin{problem}
+\begin{enumerate}[label=\alph*)]
+  \item If $\{\mathscr{T}_\alpha\}$ is a family of topologies on $X$, show that $\bigcap \mathscr{T}_\alpha$ is a topology on $X$. Is $\bigcup \mathscr{T}_\alpha$ a topology on $X$?
+  \item Let $\{\mathscr{T}_\alpha\}$ be a family of topologies on $X$. Show that there is a unique smallest topology on $X$ containing all the collections $\mathscr{T}_\alpha$, and a unique largest topology on $X$ contained in all $\mathscr{T}_\alpha$.
+  \item If $X = \{a, b, c\}$, let
+        $$\mathscr{T}_1 = \{\varnothing, \{a\}, \{a, b\}, X\} \text{ and } \mathscr{T}_2 = \{\varnothing, X, \{a\}, \{b, c\}\}$$
+        Find the smallest topology containing $\mathscr{T}_1$ and $\mathscr{T}_2$, and the largest topology contained in $\mathscr{T}_1$ and $\mathscr{T}_2$.
+\end{enumerate}
+
+\end{problem}
+
+\begin{enumerate}[label=\alph*)]
+  \item Since every set in the family is a valid topology, they all contain $X$ and $\varnothing$, so these are in the intersection. Then for any family of opens $\{U\}_\beta$ in the intersection, each $U$ is open in every topology so their arbitrary union is in each member topology and hence in the intersection. The same goes for finite intersections. Hence the intersection of the family of topologies is a topology.
+
+        The union of topologies might not be a topology since you could have a $U$ open in one topology and $V$ open in another but their union or intersection might not be in the union of topologies. Let $X = \{a, b\}$ and suppose you have topologies $\{\{a\}, \varnothing, X\}$ and $\{\{b\}, \varnothing, X\}$. Then $\{a\}$ is open in the first and $\{b\}$ is open in the second, but $\{a, b\}$ does not belong to either topology so it's not in their union.
+
+  \item The smallest topology containing all the collections $\mathscr{T}_\alpha$ is the one with $\bigcup \mathscr{T}_\alpha$ as a subbasis $\mathscr{S}$. First, closing $\mathscr{S}$ under finite intersections adds the finite intersection requirement, as we may have $U$ open in one $\mathscr{T}_\alpha$ and $V$ open in another, but not having both of them in the same topology which would guarantee their intersection be present. For example you could have $\mathscr{T}_1, \mathscr{T}_2$ from part c; the first topology contains $\{a, b\}$ and the second contains $\{b, c\}$, but their intersection $\{b\}$ is not in the union. After closing on finite intersections it's now a basis but it may still lack some open sets as we just saw. So closing it under unions clears the arbitrary union requirement. Now you have a basis that generates a topology containing all $\mathscr{T}_\alpha$.
+
+        To show this is the smallest possible topology, let $\mathscr{T}$ be the topology generated by $\bigcup \mathscr{T}_\alpha$ and assume towards a contradiction that there was a topology $\mathscr{T}'$ that contained $\bigcup \mathscr{T}_\alpha$ but was strictly contained in $\mathscr{T}$. Then there is some $U \in \mathscr{T}$ that doesn't belong to $\mathscr{T}'$. This $U$ can be written as a union of basis elements from $\bigcup \mathscr{T}_\alpha$, but $\mathscr{T}'$ is supposed to contain all those basis elements as well; so it is lacking an arbitrary union and can't be a valid topology.
+
+        The largest topology contained in all $\mathscr{T}_\alpha$ is the intersection of all $\mathscr{T}_\alpha$. We know this is a valid topology and is contained in each $\mathscr{T}_\alpha$. To show this is the largest possible topology contained in the intersection, if there was a topology $\mathscr{T}'$ strictly larger than $\mathscr{T} = \bigcap \mathscr{T}_\alpha$ then $\mathscr{T}'$ has some $U$ that is not in $\mathscr{T}$. But this means $U$ is not in some $\mathscr{T}_\alpha$ for some $\alpha$, which means $\mathscr{T}'$ is not contained in the intersection.
+
+  \item As just shown, the smallest topology containing both topologies is \textit{generated} by their union as a subbasis, and the largest topology containing them is their intersection. The union:
+        $$\mathscr{T}_1 \cup \mathscr{T}_2 = \{\varnothing, \{a\}, \{a, b\}, \{b, c\}, X\}$$
+
+        Closing this set under finite intersections adds $\{b\} = \{a, b\} \cap \{b, c\}$. Closing under unions doesn't add any additional sets making the topology generated by $\mathscr{T}_1 \cup \mathscr{T}_2$:
+        $$\mathscr{T}_1 \vee \mathscr{T}_2 = \{\varnothing, \{a\}, \{b\}, \{a, b\}, \{b, c\}, X\}$$
+
+        The largest topology containing both topologies is their intersection:
+        $$\mathscr{T}_1 \cap \mathscr{T}_2 = \{\varnothing, \{a\}, X\}$$
+\end{enumerate}
+
+\begin{problem}
+Show that if $\mathscr{A}$ is a basis for a topology on $X$, then the topology generated by $\mathscr{A}$ equals the intersection of all topologies on $X$ that contain $\mathscr{A}$. Prove the same if $\mathscr{A}$ is a subbasis.
+\end{problem}
+
+\textbf{Basis proof: inclusion both ways.}
+
+Let $\mathscr{T}(\mathscr{A})$ be the topology generated by $\mathscr{A}$ and $\{\mathscr{T}_\alpha\}$ be the family of all topologies containing $\mathscr{A}$. For the forward inclusion, consider that $\mathscr{T}(\mathscr{A})$ is generated by including all unions in $\mathscr{A}$. Any topology containing $\mathscr{A}$ must contain all these unions as well, so any $U \in \mathscr{T}(\mathscr{A})$ must be in every $\mathscr{T}_\alpha$, and hence in the intersection. Therefore $\mathscr{T}(\mathscr{A}) \subset \bigcap \mathscr{T}_\alpha$. For the reverse inclusion, $\mathscr{T}(\mathscr{A})$ is a topology containing $\mathscr{A}$ and so a member of $\{\mathscr{T}_\alpha\}$; intersecting it with other topologies cannot make it bigger and $\bigcap \mathscr{T}_\alpha \subset \mathscr{T}(\mathscr{A})$.
+
+\text{Subbasis proof: inclusion both ways.}
+
+Much the same as before, if $\mathscr{A}$ is a subbasis the the topology it generates $\mathscr{T}(\mathscr{A})$ must contain all finite intersections and unions of them. Any topology containing $\mathscr{A}$ must contain all these finite intersections and unions as well, so any $U \in \mathscr{T}(\mathscr{A})$ must be in every $\mathscr{T}_\alpha$, and hence in the intersection. Therefore $\mathscr{T}(\mathscr{A}) \subset \bigcap \mathscr{T}_\alpha$. For the reverse inclusion, $\mathscr{T}(\mathscr{A})$ is a topology containing $\mathscr{A}$ and so a member of $\{\mathscr{T}_\alpha\}$; intersecting it with other topologies cannot make it bigger and $\bigcap \mathscr{T}_\alpha \subset \mathscr{T}(\mathscr{A})$.
+
+\begin{problem}
+Show that the topologies of $\R_\ell$ and $\R_K$ are not comparable.
+\end{problem}
+
+\textbf{Proof: find a set open in each but not the other.}
+
+The set $[a, b)$ is open in $\R_\ell$ but not in $\R_K$. To find a set open in $\R_K$ but not $\R_\ell$ consider than near 0, any interval $(-a, a) - K$ lacks an infinite number of $K$ terms. So $(-a, a) - K$ is open in $\R_K$, but
+    $$(-a, a) - K = (-a, 0] \cup (0, a) -K$$
+While it may be possible to decompose $(0, a)$ to an arbitrary union between each $(\frac{1}{n+1}, \frac{1}{n})$, it would then have to be unioned with $(-a, 0]$ which is not open in $\R_\ell$. Hence the topologies are not comparable.
+
 \end{document}
 
 \end{document}
