@@ -1,0 +1,27 @@
+\documentclass{article}
+\input{preamble.tex}
+
+% Title
+\title{Your Document Title}
+\author{Benjamin Basseri}
+
+
+\begin{document}
+
+\maketitle
+
+
+\begin{problem}
+Let $X$ be a topological space; let $A$ be a subset of $X$. Suppose that for each $x \in A $ there is an open set $U$ containing $x$ such that $U \subset A$. Show that $A$ is open in $X$.
+\end{problem}
+
+\textbf{Proof: direct, using the topology axioms and given information}
+We're given for each $x \in A$ there is an open set $U$ where $x \in U \subset A$. We have arbitrary unions of open sets are open from the topology axioms. So for each $x$ call the containing open set $U_x$ that is itself contained in $A$, then $A$ is an arbitrary union of open sets, which is open:
+$$A = \bigcup_{x \in A} U_x$$
+
+\begin{problem}
+Consider the nine topologies on the set $X = \{a, b, c\}$ indicated in Example 1 of \S 12. Compare them; that is, for each pair of topologies, determine whether they are comparable, and if so, which is the finer.
+\end{problem}
+
+
+\end{document}
