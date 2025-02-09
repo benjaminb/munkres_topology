@@ -153,7 +153,99 @@ Show that the topologies of $\R_\ell$ and $\R_K$ are not comparable.
 
 The set $[a, b)$ is open in $\R_\ell$ but not in $\R_K$. To find a set open in $\R_K$ but not $\R_\ell$ consider than near 0, any interval $(-a, a) - K$ lacks an infinite number of $K$ terms. So $(-a, a) - K$ is open in $\R_K$, but
     $$(-a, a) - K = (-a, 0] \cup (0, a) -K$$
-While it may be possible to decompose $(0, a)$ to an arbitrary union between each $(\frac{1}{n+1}, \frac{1}{n})$, it would then have to be unioned with $(-a, 0]$ which is not open in $\R_\ell$. Hence the topologies are not comparable.
+  While it may be possible to decompose $(0, a)$ to an arbitrary union between each $(\frac{1}{n+1}, \frac{1}{n})$, it would then have to be unioned with $(-a, 0]$ which is not open in $\R_\ell$. Hence the topologies are not comparable.
+
+  \begin{problem}
+  Consider the following topologies on $\R$:
+  \begin{align*}
+    \mathscr{T}_1 & = \text{ the standard topology}                                                          \\
+    \mathscr{T}_2 & = \text{ the topology of } \R_\ell                                                       \\
+    \mathscr{T}_3 & = \text{ the finite complement topology}                                                 \\
+    \mathscr{T}_4 & = \text{ the upper limit topology, having all sets } (a, b] \text{ as basis}             \\
+    \mathscr{T}_5 & = \text{ the topology having all sets } (-\infty, a) = \{x \mid x < a\} \text{ as basis}
+  \end{align*}
+
+  Determine, for each of the following topologies, which of the others it contains.
+  \end{problem}
+
+  To give the symbols more memorable subscripts, refer to them as:
+
+  \begin{align*}
+    \mathscr{T}_{\R}        & = \text{ standard topology} = \R \text{ with the standard topology} \\
+    \mathscr{T}_{\ell}      & = \R_\ell \text{ lower limit topology}                              \\
+    \mathscr{T}_{\text{FC}} & = \text{ finite complement topology}                                \\
+    \mathscr{T}_u           & = \text{ upper limit topology}                                      \\
+    \mathscr{T}_{lt}        & = \text{ topology with basis } (-\infty, a)
+  \end{align*}
+
+  For starters we know the lower limit topology is strictly finer than the standard topology on $\R$. Prove that the lower limit is finer by comparing bases: a topology is strictly finer than another if for every basis element $B$ in the coarser topology and any $x \in B$, there is a basis element $B'$ in the finer topology containing $x$. For any basis element $a, b)$ in the standard topology and any $x \in (a, b)$, the basis element $[x, b) \in \R_\ell$ is contained in $(a, b)$. However for any basis element $[a, b) \in \R_\ell$, to capture $a$ in a standard basis element $(a-x, a+y)$ would have to extend below $a$ and include elements outside of $[a, b)$, so it can't be contained in $[a, b)$ making the lower limit strictly finer. Therefore $\mathscr{T}_{\R} \subset \mathscr{T}_{\ell}$.
+
+  Next, compare the lower limit topology $\mathscr{T}_\ell$ to the finite complement topology $\mathscr{T}_{\text{FC}}$. Here we can compare the topologies directly as sets. If $U \in \mathscr{T}_{\text{FC}}$ and $U^c$ is $X$ then $U = \varnothing$, which is in any topology. Otherwise, for $U$ with a finite complement, order the missing elements as $x_1, \ldots, x_n$. Then $U$ can be written as:
+$$U = X - \{x_1, \ldots, x_n\} = (-\infty, x_1) \cup (x_1, x_2) \cup \ldots \cup (x_{n-1}, x_n) \cup (x_n, \infty)$$
+
+  The lower limit topology does have open intervals as open sets, since it is strictly finer than $\R$ and contains its open sets (or consider any open interval is the arbitrary union of $(a + 1/k, b)$ starting at a sufficiently large $k$). So $U \in \mathscr{T}_{\text{FC}} \implies U \in \mathscr{T}_\ell$ and the lower limit topology is finer than the finite complement topology. Checking if it's strictly finer, consider that a basis element $[a, b)$ in the lower limit topology has an infinite complement and thus not open in $\mathscr{T}_{\text{FC}}$. Therefore $\mathscr{T}_{\text{FC}} \subset \mathscr{T}_\ell$.
+
+  Next compare $\mathscr{T}_\R$ to $\mathscr{T}_{\text{FC}}$. Similarly to the previous comparison, take any $U$ open in the finite complement. If $U^c = X$ then $U = \varnothing$ and $U \in \mathscr{T}_{\R}$. Otherwise, $U$ has a finite complement and can be written as a union of open intervals, which is also in $\mathscr{T}_{\R}$ making the finite complement coarser than the standard topology. Furthermore, $(a, b)$ is open in $\mathscr{T}_{\R}$ but has an infinite complement so it's not open in $\mathscr{T}_{\text{FC}}$, making the standard topology strictly finer than the finite complement topology. So after comparing the first three topologies we have:
+$$\mathscr{T}_{\text{FC}} \subset \mathscr{T}_{\R}  \subset \mathscr{T}_\ell$$
+
+  Next compare the upper limit topology $\mathscr{T}_u$ to the lower limit topology $\mathscr{T}_\ell$ using the bases. With basis element $[a, b)$, target $a$. There is no basis element $(a-x, a+y]$ that can capture $a$ without extending below $a$ and thus not be contained in $[a, b)$ Similarly, for $b$ in $(a, b]$ no basis element of the form $(b-x, b+y]$ can capture $b$ without extending above $b$. Therefore these topologies aren't comparable. However, just as the lower limit topology is strictly finer than the standard topology, the upper limit is strictly finer than $\mathscr{T}_\R$ as well using the same proof.
+
+  Finally, compare the last topology to the others. Since $\mathscr{T}_\R$ has all these same basis elements this implies $\mathscr{T}_{lt}$ is coarser. Checking this topology if it can also be finer than $\mathscr{T}_\R$, consider an arbitrary union $(-\infty, \alpha)$ for an arbitrary collection of $\alpha$'s. The resulting set has the form $(-\infty, \beta)$ where $\beta$ is the supremum of the $\alpha$'s. Similarly, with the intersection $(-infty, a) \cap (-\infty, b)$ the result is $(-\infty, \min(a, b))$, and likewise with any finite intersection. Therefore all open sets in $\mathscr{T}_{lt}$ have the form $(-infty, x)$ and there are any basis element in the standard topology $(a, b)$ is not open in $\mathscr{T}_{lt}$, making the standard topology strictly finer and $\mathscr{T}_{lt} \subset \mathscr{T}_\R$.
+
+  All that remains is to compare $\mathscr{T}_{lt}$ to the finite complement topology $\mathscr{T}_{\text{FC}}$. Write a set $U$ with finite complement as $U = X - \{x_1, \ldots, x_n\}$. Then $U$ can be written as:
+$$U = (-\infty, x_1) \cup (x_1, x_2) \cup \ldots \cup (x_{n-1}, x_n) \cup (x_n, \infty)$$
+
+This open set cannot belong to $\mathscr{T}_{lt}$ since it doesn't have the form $(-\infty, x)$, so $\mathscr{T}_{\text{FC}} \not\subset \mathscr{T}_{lt}$. Likewise an open set $(-\infty, x)$ in $\mathscr{T}_{lt}$ has an infinite complement and is not open in $\mathscr{T}_{\text{FC}}$, so $\mathscr{T}_{lt} \not\subset \mathscr{T}_{\text{FC}}$ and the two topologies are not comparable.
+
+\begin{center}
+  \begin{tikzpicture}[
+    node distance=1.5cm and 2cm,
+    every node/.style={draw, circle, align=center},
+    every edge/.style={draw, -{Latex[length=3mm]}}
+    ]
+
+    % Nodes
+    \node (lt) {$\mathscr{T}_{lt}$};
+    \node (R) [right=of lt] {$\mathscr{T}_\R$};
+    \node (l) [right=of R] {$\mathscr{T}_\ell$};
+    \node (FC) [below=of R] {$\mathscr{T}_{\text{FC}}$};
+    \node (u) [right=of FC] {$\mathscr{T}_u$};
+
+    % Edges
+    \draw[->] (lt) -- (R);
+    \draw[->] (R) -- (l);
+    \draw[->] (R) -- (u);
+    \draw[->] (FC) -- (l);
+    \draw[->] (FC) -- (u);
+
+
+
+  \end{tikzpicture}
+\end{center}
+
+\begin{problem}
+\begin{enumerate}[label=\alph*)]
+  \item Apply Lemma 13.2 to show that the countable collection
+        $$\mathscr{B} = \{(a, b) \mid a < b, a, b \in \Q\}$$
+        is a basis that generates the standard topology on $\R$.
+  \item Show that the collection
+        $$\mathscr{C} = \{[a, b) \mid a < b, a, b \in \Q\}$$
+        is a basis that generates a topology different from the lower limit topology on $\R$.
+\end{enumerate}
+\end{problem}
+
+\begin{enumerate}[label=\alph*)]
+  \item Lemma 13.2 states that a collection $\mathscr{B}$ is a basis if for every $U$ open in $X$ and each $x \in U$ there is some $B \in \mathscr{B}$ such that $x \in B \subset U$. So take any $U$ open in $\R$; represented as a union of open intervals. Then for any interval $(a, b)$ if the endpoints are rational then it is in the set $\mathscr{B}$ described in the problem setup. Otherwise, WLOG suppse $a$ is irrational. Then construct a sequence of rationals $(a_n) \to a$ and the union $\bigcup (a_n, b)$ will contain any $x \in (a, b)$ and itself be contained in $(a, b)$. Therefore this is a basis for $\R$ and in fact corresponds to the standard basis.
+  \item There are two ways you can look at this. First, consider that these basis elements while restricted to rational endpoints can still union to any open interval with rational or irrational endpoints. For any target endpoints $a$ and $b$, construct sequences of rationals $(a_n) \to a$ where all $a_n \in (a, b)$ and $(b_n) \to b$ with all $b_n \in (a, b)$. Then the union
+
+        $$\bigcup [a_n, b_n) = (a, b)$$
+
+        This indicates that this basis generates the standard topology on $\R$, which is strictly coarser than the lower limit topology and hence cannot be the same topology.
+
+        The other way is to compare the basis direclty to the lower limit topology. For any basis element in the lower limit $[a, b)$ with irrational $a$, it's impossible to form a basis element in $\mathscr{C}$ that contains $a$ and is contained in $[a, b)$. This is impossible because any half-open interval with rational endpoints cannot start at $a$, which is irrational, so it must start at some $a - x$ which is lower than $a$ and necessarily will contain elements not in $[a, b)$, and hence not be contained in $[a, b)$. Therefore the basis $\mathscr{C}$ generates a topology different from the lower limit topology.
+
+\end{enumerate}
+
 
 \end{document}
 
